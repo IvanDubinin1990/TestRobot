@@ -60,11 +60,11 @@ public class Robot {
         int startingPointX = robot.getX();
         int startingPointY = robot.getY();
 
-        if ((toX > robot.getX() && robot.getDirection() == Direction.LEFT) || (toX < robot.getX() && robot.getDirection() == Direction.RIGHT)) {
+        if (robot.getDirection() == Direction.LEFT) {
             robot.turnRight();
-        } else if ((toX > robot.getX() && robot.getDirection() == Direction.RIGHT) || (toX < robot.getX() && robot.getDirection() == Direction.LEFT)) {
+        } else if (robot.getDirection() == Direction.RIGHT) {
             robot.turnLeft();
-        } else if ((toX > robot.getX() && robot.getDirection() == Direction.DOWN) || (toX < robot.getX() && robot.getDirection() == Direction.UP)) {
+        } else if (robot.getDirection() == Direction.DOWN){
             robot.turnLeft();
             robot.turnLeft();
         }
@@ -74,26 +74,25 @@ public class Robot {
                 robot.stepForward();
             }
         } else if (toX < robot.getX()) {
+            robot.turnLeft();
+            robot.turnLeft();
             for (int i = 0; i < startingPointX - toX; i++) {
                 robot.stepForward();
             }
         }
 
-
-        if ((toY > robot.getY() && robot.getDirection() == Direction.UP) || (toY < robot.getY() && robot.getDirection() == Direction.DOWN)) {
-            robot.turnRight();
-        } else if ((toY > robot.getY() && robot.getDirection() == Direction.DOWN) || (toY < robot.getY() && robot.getDirection() == Direction.UP)) {
-            robot.turnLeft();
-        } else if ((toY > robot.getY() && robot.getDirection() == Direction.LEFT) || (toY < robot.getY() && robot.getDirection() == Direction.RIGHT)) {
-            robot.turnLeft();
-            robot.turnLeft();
+        if (robot.getDirection() == Direction.DOWN) {
+                robot.turnRight();
+                robot.turnRight();
         }
 
         if (toY > robot.getY()) {
+            robot.turnRight();
             for (int i = 0; i < toY - startingPointY; i++) {
                 robot.stepForward();
             }
         } else if (toY < robot.getY()) {
+            robot.turnLeft();
             for (int i = 0; i < startingPointY - toY; i++) {
                 robot.stepForward();
             }
