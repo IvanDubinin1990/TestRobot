@@ -57,43 +57,43 @@ public class Robot {
 
     public static void moveRobot(Robot robot, int toX, int toY) {
 
-        int startingPointX = robot.x;
-        int startingPointY = robot.y;
+        int startingPointX = robot.getX();
+        int startingPointY = robot.getY();
 
-        if ((toX > robot.x && robot.direction == Direction.LEFT) || (toX < robot.x && robot.direction == Direction.RIGHT)) {
+        if ((toX > robot.getX() && robot.getDirection() == Direction.LEFT) || (toX < robot.getX() && robot.getDirection() == Direction.RIGHT)) {
             robot.turnRight();
-        } else if ((toX > robot.x && robot.direction == Direction.RIGHT) || (toX < robot.x && robot.direction == Direction.LEFT)) {
+        } else if ((toX > robot.getX() && robot.getDirection() == Direction.RIGHT) || (toX < robot.getX() && robot.getDirection() == Direction.LEFT)) {
             robot.turnLeft();
-        } else if ((toX > robot.x && robot.direction == Direction.DOWN) || (toX < robot.x && robot.direction == Direction.UP)) {
+        } else if ((toX > robot.getX() && robot.getDirection() == Direction.DOWN) || (toX < robot.getX() && robot.getDirection() == Direction.UP)) {
             robot.turnLeft();
             robot.turnLeft();
         }
 
-        if (toX > robot.x) {
+        if (toX > robot.getX()) {
             for (int i = 0; i < toX - startingPointX; i++) {
                 robot.stepForward();
             }
-        } else if (toX < robot.x) {
+        } else if (toX < robot.getX()) {
             for (int i = 0; i < startingPointX - toX; i++) {
                 robot.stepForward();
             }
         }
 
 
-        if ((toY > robot.y && robot.direction == Direction.UP) || (toY < robot.y && robot.direction == Direction.DOWN)) {
+        if ((toY > robot.getY() && robot.getDirection() == Direction.UP) || (toY < robot.getY() && robot.getDirection() == Direction.DOWN)) {
             robot.turnRight();
-        } else if ((toY > robot.y && robot.direction == Direction.DOWN) || (toY < robot.y && robot.direction == Direction.UP)) {
+        } else if ((toY > robot.getY() && robot.getDirection() == Direction.DOWN) || (toY < robot.getY() && robot.getDirection() == Direction.UP)) {
             robot.turnLeft();
-        } else if ((toY > robot.y && robot.direction == Direction.LEFT) || (toY < robot.y && robot.direction == Direction.RIGHT)) {
+        } else if ((toY > robot.getY() && robot.getDirection() == Direction.LEFT) || (toY < robot.getY() && robot.getDirection() == Direction.RIGHT)) {
             robot.turnLeft();
             robot.turnLeft();
         }
 
-        if (toY > robot.y) {
+        if (toY > robot.getY()) {
             for (int i = 0; i < toY - startingPointY; i++) {
                 robot.stepForward();
             }
-        } else if (toY < robot.y) {
+        } else if (toY < robot.getY()) {
             for (int i = 0; i < startingPointY - toY; i++) {
                 robot.stepForward();
             }
