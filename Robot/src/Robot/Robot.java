@@ -44,10 +44,10 @@ public class Robot {
 
     public void stepForward() {
         switch (direction) {
-            case UP -> x += 1;
-            case DOWN -> x -= 1;
-            case RIGHT -> y += 1;
-            case LEFT -> y -= 1;
+            case UP -> y += 1;
+            case DOWN -> y -= 1;
+            case RIGHT -> x += 1;
+            case LEFT -> x -= 1;
         }
     }
 
@@ -57,43 +57,42 @@ public class Robot {
 
     public static void moveRobot(Robot robot, int toX, int toY) {
 
-        int startingPointX = robot.getX();
-        int startingPointY = robot.getY();
+        switch (robot.getDirection()) {
+            case LEFT -> robot.turnRight();
+            case RIGHT -> robot.turnLeft();
+            case DOWN -> {
+                robot.turnRight();
+                robot.turnRight();
+            }
+        }
 
-        if (robot.getDirection() == Direction.LEFT) {
-            robot.turnRight();
-        } else if (robot.getDirection() == Direction.RIGHT) {
+        while (toY > robot.getY()) {
+            robot.stepForward();
+        }
+
+        if (toY < robot.getY()) {
             robot.turnLeft();
-        } else if (robot.getDirection() == Direction.DOWN){
             robot.turnLeft();
-            robot.turnLeft();
+            while (toY < robot.getY()) {
+                robot.stepForward();
+            }
+        }
+
+        switch (robot.getDirection()) {
+            case DOWN -> {
+                robot.turnRight();
+                robot.turnRight();
+            }
         }
 
         if (toX > robot.getX()) {
-            for (int i = 0; i < toX - startingPointX; i++) {
+            robot.turnRight();
+            while (toX > robot.getX()) {
                 robot.stepForward();
             }
         } else if (toX < robot.getX()) {
             robot.turnLeft();
-            robot.turnLeft();
-            for (int i = 0; i < startingPointX - toX; i++) {
-                robot.stepForward();
-            }
-        }
-
-        if (robot.getDirection() == Direction.DOWN) {
-                robot.turnRight();
-                robot.turnRight();
-        }
-
-        if (toY > robot.getY()) {
-            robot.turnRight();
-            for (int i = 0; i < toY - startingPointY; i++) {
-                robot.stepForward();
-            }
-        } else if (toY < robot.getY()) {
-            robot.turnLeft();
-            for (int i = 0; i < startingPointY - toY; i++) {
+            while (toX > robot.getX()) {
                 robot.stepForward();
             }
         }
