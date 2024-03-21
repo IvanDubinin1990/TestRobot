@@ -92,7 +92,7 @@ public class Robot {
             }
         } else if (toX < robot.getX()) {
             robot.turnLeft();
-            while (toX > robot.getX()) {
+            while (toX < robot.getX()) {
                 robot.stepForward();
             }
         }
